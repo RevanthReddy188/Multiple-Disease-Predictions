@@ -2,59 +2,6 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 import numpy as np
-if "users" not in st.session_state:
-    st.session_state.users = {
-        "revanth": {"password": "admin123", "name": "Revanth"}
-    }
-
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
-
-if "current_user" not in st.session_state:
-    st.session_state.current_user = None
-
-if "show_signup" not in st.session_state:
-    st.session_state.show_signup = False
-    
-def login_page():
-    st.title("🔐 Login to Health Assistant")
-
-    username = st.text_input("Username")
-    password = st.text_input("Password", type="password")
-
-    if st.button("Login"):
-        if username in st.session_state.users and st.session_state.users[username]["password"] == password:
-            st.session_state.logged_in = True
-            st.session_state.current_user = username
-            st.success("✅ Login successful!")
-        else:
-            st.error("❌ Invalid username or password")
-
-    st.markdown("Don't have an account?")
-    if st.button("Go to Signup"):
-        st.session_state.show_signup = True
-
-def signup_page():
-    st.title("📝 Create an Account")
-
-    new_username = st.text_input("Choose a Username")
-    new_password = st.text_input("Choose a Password", type="password")
-    confirm = st.text_input("Confirm Password", type="password")
-
-    if st.button("Signup"):
-        if new_username in st.session_state.users:
-            st.error("Username already exists")
-        elif new_password != confirm:
-            st.error("Passwords do not match")
-        elif len(new_username.strip()) < 3 or len(new_password.strip()) < 4:
-            st.warning("Username must be 3+ and password 4+ characters")
-        else:
-            st.session_state.users[new_username] = {"password": new_password, "name": new_username}
-            st.success("Account created! You can now log in.")
-            st.session_state.show_signup = False
-
-    if st.button("Back to Login"):
-        st.session_state.show_signup = False
 
 # Page config
 st.set_page_config(page_title="Health Assistant", layout="wide", page_icon="🧑‍⚕️")
@@ -75,7 +22,7 @@ with st.sidebar:
         default_index=0
     )
 
-
+# ===================== DIABETES =====================
 if selected == 'Diabetes Prediction':
     st.title("🧠 Diabetes Prediction using ML")
     st.markdown("Enter the medical details below to predict the likelihood of diabetes.")
@@ -130,7 +77,7 @@ if selected == 'Diabetes Prediction':
         except:
             st.warning("❗ Please enter valid numeric values in all fields.")
 
-
+# ===================== HEART =====================
 if selected == 'Heart Disease Prediction':
     st.title("❤️ Heart Disease Prediction using ML")
     st.markdown("Fill out the following details to assess the risk of heart disease.")
@@ -200,7 +147,7 @@ if selected == 'Heart Disease Prediction':
         except:
             st.warning("❗ Please enter valid numeric values in all fields.")
 
-
+# ===================== PARKINSON'S =====================
 if selected == "Parkinsons Prediction":
     st.title("🧠 Parkinson's Disease Prediction using ML")
     st.markdown("Input the required voice measurements to check for Parkinson’s Disease.")
