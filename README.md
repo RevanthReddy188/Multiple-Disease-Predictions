@@ -7,7 +7,7 @@ A web-based machine learning app built using **Streamlit** that predicts:
  🧠 Parkinson’s Disease
 
 ## 🚀 Live Demo:
- [Click here to try the app](https://revanthreddy188-multiple-disease-predictor.streamlit.app/)
+ [Click here to try the app](https://revanthreddy188-multiple-disease-predictons.streamlit.app/)
 
 ##  Technologies Used:
  Python, scikit-learn
